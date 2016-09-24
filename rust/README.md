@@ -14,7 +14,7 @@ https://rust-lang-ja.github.io/the-rust-programming-language-ja/1.6/book/README.
   - [x] 4.4. コメント
   - [x] 4.5. if
   - [x] 4.6. ループ
-  - [ ] 4.7. 所有権
+  - [x] 4.7. 所有権
   - [ ] 4.8. 参照と借用
   - [ ] 4.9. ライフタイム
   - [ ] 4.10. ミュータビリティ

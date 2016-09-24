@@ -9,7 +9,7 @@ https://rust-lang-ja.github.io/the-rust-programming-language-ja/1.6/book/README.
   - [ ] 3.3. 他言語と共存する
 - [ ] 4. シンタックスとセマンティクス
   - [x] 4.1. 変数束縛
-  - [ ] 4.2. 関数
+  - [x] 4.2. 関数
   - [ ] 4.3. プリミティブ型
   - [ ] 4.4. コメント
   - [ ] 4.5. if

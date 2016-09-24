@@ -18,7 +18,7 @@ https://rust-lang-ja.github.io/the-rust-programming-language-ja/1.6/book/README.
   - [x] 4.8. 参照と借用
   - [x] 4.9. ライフタイム
   - [x] 4.10. ミュータビリティ
-  - [ ] 4.11. 構造体
+  - [x] 4.11. 構造体
   - [ ] 4.12. 列挙型
   - [ ] 4.13. マッチ
   - [ ] 4.14. パターン

@@ -11,7 +11,7 @@ https://rust-lang-ja.github.io/the-rust-programming-language-ja/1.6/book/README.
   - [x] 4.1. 変数束縛
   - [x] 4.2. 関数
   - [x] 4.3. プリミティブ型
-  - [ ] 4.4. コメント
+  - [x] 4.4. コメント
   - [ ] 4.5. if
   - [ ] 4.6. ループ
   - [ ] 4.7. 所有権

@@ -25,7 +25,7 @@ https://rust-lang-ja.github.io/the-rust-programming-language-ja/1.6/book/README.
   - [x] 4.15. メソッド構文
   - [x] 4.16. ベクタ
   - [x] 4.17. 文字列
-  - [ ] 4.18. ジェネリクス
+  - [x] 4.18. ジェネリクス
   - [ ] 4.19. トレイト
   - [ ] 4.20. Drop
   - [ ] 4.21. if let

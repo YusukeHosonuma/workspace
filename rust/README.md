@@ -29,7 +29,7 @@ https://rust-lang-ja.github.io/the-rust-programming-language-ja/1.6/book/README.
   - [x] 4.19. トレイト
   - [x] 4.20. Drop
   - [x] 4.21. if let
-  - [ ] 4.22. トレイトオブジェクト
+  - [x] 4.22. トレイトオブジェクト
   - [ ] 4.23. クロージャ
   - [ ] 4.24. 共通の関数呼出構文
   - [ ] 4.25. クレートとモジュール

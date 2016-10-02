@@ -1,0 +1,6 @@
+[package]
+name = "tutorial_4_22"
+version = "0.1.0"
+authors = ["Yusuke Hosonuma <tobi462@gmail.com>"]
+
+[dependencies]

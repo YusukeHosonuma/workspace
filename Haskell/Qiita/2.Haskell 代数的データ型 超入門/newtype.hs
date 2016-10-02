@@ -1,0 +1,1 @@
+newtype Foo = Foo Int

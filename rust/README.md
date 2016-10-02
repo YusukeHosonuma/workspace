@@ -5,7 +5,7 @@ https://rust-lang-ja.github.io/the-rust-programming-language-ja/1.6/book/README.
 - [x] 2. はじめる
 - [ ] 3. Rustを学ぶ
   - [x] 3.1. 数当てゲーム
-  - [ ] 3.2. 食事する哲学者
+  - [x] 3.2. 食事する哲学者（ちゃんと並列実行されなかった・・・）
   - [ ] 3.3. 他言語と共存する
 - [ ] 4. シンタックスとセマンティクス
   - [x] 4.1. 変数束縛

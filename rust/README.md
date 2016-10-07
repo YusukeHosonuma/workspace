@@ -33,7 +33,7 @@ https://rust-lang-ja.github.io/the-rust-programming-language-ja/1.6/book/README.
   - [x] 4.23. クロージャ
   - [x] 4.24. 共通の関数呼出構文
   - [x] 4.25. クレートとモジュール
-  - [ ] 4.26. `const` と `static`
+  - [x] 4.26. `const` と `static`
   - [ ] 4.27. アトリビュート
   - [ ] 4.28. `type` エイリアス
   - [ ] 4.29. 型間のキャスト

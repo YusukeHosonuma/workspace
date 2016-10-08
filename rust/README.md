@@ -43,7 +43,7 @@ https://rust-lang-ja.github.io/the-rust-programming-language-ja/1.6/book/README.
   - [x] 4.33. Derefによる型強制
   - [x] 4.34. マクロ
   - [x] 4.35. 生ポインタ
-  - [ ] 4.36. `unsafe`
+  - [x] 4.36. `unsafe`
 - [ ] 5. Effective Rust
   - [ ] 5.1. スタックとヒープ
   - [ ] 5.2. テスト

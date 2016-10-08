@@ -41,7 +41,7 @@ https://rust-lang-ja.github.io/the-rust-programming-language-ja/1.6/book/README.
   - [x] 4.31. サイズ不定型
   - [x] 4.32. 演算子とオーバーロード
   - [x] 4.33. Derefによる型強制
-  - [ ] 4.34. マクロ
+  - [x] 4.34. マクロ
   - [ ] 4.35. 生ポインタ
   - [ ] 4.36. `unsafe`
 - [ ] 5. Effective Rust

@@ -20,17 +20,16 @@ fn main() {
     }
 
     match stack.pop() {
-        None => panic!("parse error"),
         Some(result) => println!("{} => {}", question, result),
+        None => panic!("parse error"),
     }
 }
 
 fn pop2(stack: &mut Vec<i32>) -> (i32, i32) {
-    match stack.pop() {
-        None => panic!("parse error."),
-        Some(n1) => match stack.pop() {
-            None => panic!("parse error."),
-            Some(n2) => (n1, n2),
-        },
+    if let Some(n1) = stack.pop() {
+        if let Some(n2) = stack.pop() {
+            return (n1, n2)
+        }
     }
+    panic!("parse error.");
 }

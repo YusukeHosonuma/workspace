@@ -26,10 +26,8 @@ fn main() {
 }
 
 fn pop2(stack: &mut Vec<i32>) -> (i32, i32) {
-    if let Some(n1) = stack.pop() {
-        if let Some(n2) = stack.pop() {
-            return (n1, n2)
-        }
+    if let (Some(n1), Some(n2)) = (stack.pop(), stack.pop()) {
+        return (n1, n2)
     }
     panic!("parse error.");
 }

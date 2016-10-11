@@ -6,11 +6,9 @@ fn main() {
 
     for s in question.split(" ") {
         if s == "+" {
-            let (n1, n2) = pop2(&mut stack);
-            stack.push(n1 + n2);
+            pop2_apply(&mut stack, |a, b| a + b);
         } else if s == "*" {
-            let (n1, n2) = pop2(&mut stack);
-            stack.push(n1 * n2);
+            pop2_apply(&mut stack, |a, b| a * b);
         } else {
             match s.parse::<i32>() {
                 Ok(n)  => stack.push(n),
@@ -20,14 +18,22 @@ fn main() {
     }
 
     match stack.pop() {
-        Some(result) => println!("{} => {}", question, result),
+        Some(result) => {
+            println!("{} => {}", question, result);
+            assert_eq!(result, 30);
+        },
         None => panic!("parse error"),
     }
 }
 
+fn pop2_apply<F: >(stack: &mut Vec<i32>, apply: F) where F: Fn(i32, i32) -> i32 {
+    let (a, b) = pop2(stack);
+    stack.push(apply(a, b));
+}
+
 fn pop2(stack: &mut Vec<i32>) -> (i32, i32) {
-    if let (Some(n1), Some(n2)) = (stack.pop(), stack.pop()) {
-        return (n1, n2)
+    if let (Some(a), Some(b)) = (stack.pop(), stack.pop()) {
+        return (a, b)
     }
     panic!("parse error.");
 }

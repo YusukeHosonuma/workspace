@@ -1,10 +1,34 @@
+// 逆ポーランド電卓
+
 fn main() {
 
     let question = "1 5 + 2 3 + *"; // Expected: (1 + 5) * (2 + 3) => 30
 
+    match resolve(question) {
+        Some(result) => {
+            println!("{} => {}", question, result);
+            assert_eq!(result, 30);
+        },
+        None => panic!("parse error"),
+    }
+}
+
+/// RPN式を解く
+///
+/// # Arguments
+///
+/// * `expr` - 対象の式
+///
+/// # Example
+///
+/// ```
+/// resolve("1 5 + 2 3 + *"); // => Some(30)
+/// ```
+fn resolve(expr: &str) -> Option<i32> {
+
     let mut stack: Vec<i32> = Vec::new();
 
-    for s in question.split(" ") {
+    for s in expr.split(" ") {
         if s == "+" {
             pop2_apply(&mut stack, |a, b| a + b);
         } else if s == "*" {
@@ -17,13 +41,7 @@ fn main() {
         }
     }
 
-    match stack.pop() {
-        Some(result) => {
-            println!("{} => {}", question, result);
-            assert_eq!(result, 30);
-        },
-        None => panic!("parse error"),
-    }
+    stack.pop()
 }
 
 fn pop2_apply<F: >(stack: &mut Vec<i32>, apply: F) where F: Fn(i32, i32) -> i32 {

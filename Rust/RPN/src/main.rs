@@ -2,15 +2,13 @@
 
 fn main() {
 
-    let question = "1 5 + 2 3 + *"; // Expected: (1 + 5) * (2 + 3) => 30
+    // Valid expr
+    assert_eq!(resolve("1 5 + 2 3 + *"), Some(30)); // from Wikipedia.
 
-    match resolve(question) {
-        Some(result) => {
-            println!("{} => {}", question, result);
-            assert_eq!(result, 30);
-        },
-        None => panic!("parse error"),
-    }
+    // Invalid expr
+    assert_eq!(resolve("5 + 2 3 + *"),     None); // (+) 処理時にスタックに数字が1つ
+    assert_eq!(resolve("1 5 + 2x 3 + *"),  None); // 数値へのパースに失敗
+    assert_eq!(resolve("9 1 5 + 2 3 + *"), None); // スタックの数字を使い切らない
 }
 
 /// RPN式を解く
@@ -30,28 +28,33 @@ fn resolve(expr: &str) -> Option<i32> {
 
     for s in expr.split(" ") {
         if s == "+" {
-            pop2_apply(&mut stack, |a, b| a + b);
+            if !pop2_apply(&mut stack, |a, b| a + b) { return None };
         } else if s == "*" {
-            pop2_apply(&mut stack, |a, b| a * b);
+            if !pop2_apply(&mut stack, |a, b| a * b) { return None };
         } else {
             match s.parse::<i32>() {
                 Ok(n)  => stack.push(n),
-                Err(_) => panic!("parse error."),
+                Err(_) => return None,
             }
         }
     }
 
-    stack.pop()
+    if stack.len() == 1 { stack.pop() } else { None }
 }
 
-fn pop2_apply<F: >(stack: &mut Vec<i32>, apply: F) where F: Fn(i32, i32) -> i32 {
-    let (a, b) = pop2(stack);
-    stack.push(apply(a, b));
-}
-
-fn pop2(stack: &mut Vec<i32>) -> (i32, i32) {
-    if let (Some(a), Some(b)) = (stack.pop(), stack.pop()) {
-        return (a, b)
+fn pop2_apply<F: >(stack: &mut Vec<i32>, apply: F) -> bool where F: Fn(i32, i32) -> i32 {
+    if let Some((a, b)) = pop2(stack) {
+        stack.push(apply(a, b));
+        true
+    } else {
+        false
     }
-    panic!("parse error.");
+}
+
+fn pop2(stack: &mut Vec<i32>) -> Option<(i32, i32)> {
+    if let (Some(a), Some(b)) = (stack.pop(), stack.pop()) {
+        Some((a, b))
+    } else {
+        None
+    }
 }

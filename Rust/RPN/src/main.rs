@@ -37,36 +37,39 @@ enum OperatorType {
 /// ```
 fn resolve(expr: &str) -> Option<i32> {
 
+    use Expr::*;
+    use OperatorType::*;
+
     let mut stack: Vec<i32> = Vec::new();
 
     // トークン解析
     let expr: Vec<Expr> = expr.split(" ").map(|s| {
         if s == "+" {
-            Expr::Operator(OperatorType::Sum)
+            Operator(Sum)
         } else if s == "*" {
-            Expr::Operator(OperatorType::Product)
+            Operator(Product)
         } else {
             match s.parse::<i32>() {
-                Ok(n)  => Expr::Num(n),
-                Err(_) => Expr::Unknown,
+                Ok(n)  => Num(n),
+                Err(_) => Unknown,
             }
         }
     }).collect();
 
     // 未サポートのトークンがあれば失敗
-    if expr.contains(&Expr::Unknown) {
+    if expr.contains(&Unknown) {
         return None
     }
 
     // 式を評価
     for e in expr {
         match e {
-            Expr::Operator(op) => match op {
-                OperatorType::Sum     => if !pop2_apply(&mut stack, |a, b| a + b) { return None },
-                OperatorType::Product => if !pop2_apply(&mut stack, |a, b| a * b) { return None },
+            Operator(op) => match op {
+                Sum     => if !pop2_apply(&mut stack, |a, b| a + b) { return None },
+                Product => if !pop2_apply(&mut stack, |a, b| a * b) { return None },
             },
-            Expr::Num(n) => stack.push(n),
-            Expr::Unknown => panic!("Unknown token not resolved."),
+            Num(n) => stack.push(n),
+            Unknown => panic!("Unknown token not resolved."),
         }
     }
 

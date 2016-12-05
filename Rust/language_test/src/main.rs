@@ -4,6 +4,22 @@ fn main() {
 }
 
 #[test]
+#[allow(unused_assignments)]
+fn mutate() {
+    let mut x = 1;
+    x = 2;
+    assert_eq!(x, 2);    
+}
+
+#[test]
+#[allow(unused_variables)]
+fn shadowing() {
+    let x = 1;
+    let x = 2;
+    assert_eq!(x, 2);
+}
+
+#[test]
 fn array() {
     let xs = [1, 2, 3];
     assert_eq!(xs.len(), 3);
@@ -117,6 +133,33 @@ fn _for_() {
 }
 
 #[test]
+fn enumerate() {
+    let mut xs = Vec::new();
+    for (i, c) in (5..8).enumerate() {
+        let s = format!("{}{}", i, c);
+        xs.push(s);
+    }
+    assert_eq!(xs.len(), 3);
+    assert_eq!(xs[0], "05");
+    assert_eq!(xs[1], "16");
+    assert_eq!(xs[2], "27");
+}
+
+#[test]
+fn enumerate_vec() {
+    let v: Vec<char> = vec!['A', 'B', 'C'];
+    let mut xs = Vec::new();
+    for (i, c) in v.iter().enumerate() {
+        let s = format!("{}: {}", i, c);
+        xs.push(s);
+    }
+    assert_eq!(xs.len(), 3);
+    assert_eq!(xs[0], "0: A");
+    assert_eq!(xs[1], "1: B");
+    assert_eq!(xs[2], "2: C");
+}
+
+#[test]
 fn iter() {
     let v: Vec<i32> = vec![1, 2, 3];
     let mut iter = v.into_iter();
@@ -134,4 +177,58 @@ fn iter_for() {
         r += i;
     }
     assert_eq!(r, 6);
+}
+
+#[test]
+fn loop_label() {
+    'outer: for x in 0..3 {
+        'inner: for y in 0..3 {
+            if x % 2 == 0 { continue 'outer; }
+            if y % 2 == 0 { continue 'inner; }
+            assert_eq!(x, 1);
+            assert_eq!(y, 1);
+        }
+    }
+}
+
+#[test]
+fn owner() {
+    fn push(mut v: Vec<i32>) -> Vec<i32> {
+        v.push(4);
+        v // return owner
+    }
+    let mut v = vec![1, 2, 3];
+    v = push(v); // 所有権を返してもらう
+    assert_eq!(v.len(), 4);
+}
+
+#[test]
+fn borrowing() {
+    fn sum(v: &Vec<i32>) -> i32 { // 借用
+        v.into_iter().fold(0, |acc, &x| acc + x)
+    }
+    let v = vec![1, 2, 3, 4, 5];
+    let total = sum(&v); // 参照を渡す
+    assert_eq!(total, 15);
+    assert_eq!(v.len(), 5); // 所有権がムーブしてないので使える
+}
+
+#[test]
+fn mut_reference() {
+    fn push(v: &mut Vec<i32>) {
+        v.push(4);
+    }
+    let mut v = vec![1, 2, 3];
+    push(&mut v);
+    assert_eq!(v.len(), 4);
+}
+
+#[test]
+fn borrowing_rule() {
+    let mut x = 5;
+    {
+        let y = &mut x;
+        *y += 1;
+    } // ここで &mut借用 が終わる
+    assert_eq!(x, 6); // なので、ここで借用できる
 }

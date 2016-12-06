@@ -12,6 +12,15 @@ fn mutate() {
 }
 
 #[test]
+#[allow(unused_assignments)]
+#[allow(unused_variables)]
+fn mutate_pattern() {
+    let (mut x, y) = (5, 6);
+    x = 2;
+    assert_eq!(x, 2);
+}
+
+#[test]
 #[allow(unused_variables)]
 fn shadowing() {
     let x = 1;
@@ -231,4 +240,17 @@ fn borrowing_rule() {
         *y += 1;
     } // ここで &mut借用 が終わる
     assert_eq!(x, 6); // なので、ここで借用できる
+}
+
+#[test]
+#[allow(dead_code)]
+fn cell() {
+    use std::cell::Cell;
+    struct Point {
+        x: i32,
+        y: Cell<i32>,
+    }
+    let point = Point { x: 5, y: Cell::new(6) };
+    point.y.set(7);
+    assert_eq!(point.y.get(), 7);
 }

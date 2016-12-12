@@ -254,3 +254,101 @@ fn cell() {
     point.y.set(7);
     assert_eq!(point.y.get(), 7);
 }
+
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+#[test]
+fn _struct() {
+
+    // 構造体の初期化
+    let point = Point { y: 1, x: 2 }; // 順番が違ってもOK
+    assert_eq!(2, point.x);
+    assert_eq!(1, point.y);
+
+    // 構造体のアップデート
+    let shift_x = Point { x: point.x + 2, .. point };
+    assert_eq!(4, shift_x.x);
+    assert_eq!(1, shift_x.y);
+}
+
+#[test]
+#[allow(unused_variables)]
+fn tuple_struct() {
+
+    // タプル構造体（名前ではなく順序で比較される）
+    struct Color(i32, i32, i32);
+    struct Point(i32, i32, i32);
+
+    let color = Color(1, 2, 3);
+    let point = Point(1, 2, 3);
+    
+    // パターンマッチで値を取り出し
+    let Color(r, g, b) = color;
+    assert_eq!(1, r);
+    assert_eq!(2, g);
+    assert_eq!(3, b);
+
+    // 1要素のタプル構造体（newtypeパターン）
+    struct EscapedString<'a>(&'a str);
+    let es = EscapedString("&lt;html&gt;");
+    let EscapedString(s) = es;
+    assert_eq!("&lt;html&gt;", s);
+}
+
+enum Optional<T> {
+    Some(T),
+    None,
+}
+
+#[test]
+#[allow(dead_code)]
+#[allow(unused_variables)]
+fn _enum() {
+ 
+    // enumのヴァリアントの生成
+    let x = Optional::Some(10);
+
+    // マッチ
+    let n = match x {
+        Optional::Some(n) => n * 2,
+        Optional::None => 0,
+    };
+    assert_eq!(n, 20);
+
+    // use宣言すれば名前空間を省略できる
+    use self::Optional::*;
+    let n = match x {
+        Some(n) => n * 2,
+        None => 0,
+    };
+    assert_eq!(n, 20);
+
+    enum Message {
+        Quit,
+        ChangeColor(i32, i32, i32), // タプル構造体-like
+        Move { x: i32, y: i32 }, // 構造体-like
+        Write(String), // newtypeパターン-like
+    }
+    let color = Message::ChangeColor(1, 2, 3);
+    let mv = Message::Move { x: 1, y: 2 };
+    let write = Message::Write("write!!".to_string());
+}
+
+#[test]
+fn string() {
+
+    // 文字列リテラルで表記すると`&'static str`型
+    let s: &'static str = "hello";
+    assert_eq!(s, "hello");
+
+    // String（可変文字列）への変換（高コスト）
+    let s: String = s.to_string(); 
+    assert_eq!(s.as_str(), "hello");
+
+    // &str（文字列スライス）への変換（低コスト）
+    let s: &str = s.as_str();
+    assert_eq!(s, "hello");
+}

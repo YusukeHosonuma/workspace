@@ -352,3 +352,79 @@ fn string() {
     let s: &str = s.as_str();
     assert_eq!(s, "hello");
 }
+
+#[test]
+#[allow(unused_variables)]
+fn _match() {
+    let x = 2;
+    let y = match x {
+        1 | 2 => "one or two", // 複式パターン
+        3     => "three",
+        _     => "other"
+    };
+    assert_eq!(y, "one or two");
+
+    let x = 1;
+    let y = 2;
+    let y = match x {
+        y => y, // 値としての「2」ではなく、変数yとしてマッチされる（シャドウィング）
+    };
+    assert_eq!(y, 1);
+}
+
+// マッチによる構造体のでストラクチャリング（分解）
+#[test]
+fn _match_destructure() {
+    struct Point {
+        x: i32,
+        y: i32,
+    }
+    let p = Point { x: 1, y: 2 };
+    let s = match p {
+        Point { x, y } => format!("({}, {})", x, y),
+    };
+    assert_eq!(s, "(1, 2)");
+
+    // 別名をつけるパターン（x1, y1）
+    let s = match p {
+        Point { x: x1, y: y1 } => format!("({}, {})", x1, y1),
+    };
+    assert_eq!(s, "(1, 2)");
+
+    // 値の一部を取り出す
+    let s = match p {
+        Point { x, .. } => format!("({}, ?)", x),
+    };
+    assert_eq!(s, "(1, ?)");
+
+    // 値の一部を取り出す（最初のメンバで無くてもOK）
+    let s = match p {
+        Point { y, .. } => format!("(?, {})", y),
+    };
+    assert_eq!(s, "(?, 2)");
+}
+
+#[test]
+fn _ref() {
+    let x = 5;
+
+    // リファレンスを取得
+    let r = match x { // &i32
+        ref r => r,
+    };
+    assert_eq!(*r, 5);
+}
+
+#[test]
+fn _ref_mut() {
+    let mut x = 5;
+
+    // ミュータブルリファレンスを取得
+    {
+        let mr = match x { // &i32
+            ref mut mr => mr,
+        };
+        *mr = 4; // ミュータブルな借用を終わらせる
+    }
+    assert_eq!(x, 4); // ここでイミュータブルな借用をするので
+}

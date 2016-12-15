@@ -428,3 +428,83 @@ fn _ref_mut() {
     }
     assert_eq!(x, 4); // ここでイミュータブルな借用をするので
 }
+
+// パターン: レンジ
+#[test]
+fn pattern_range() {
+    
+    let x = 0;
+    let y = match x {
+        1 ... 5 => true, // 1 - 5 にマッチ
+        _ => false,
+    };
+    assert!(!y);
+
+    let x = 1;
+    let y = match x {
+        1 ... 5 => true,
+        _ => false,
+    };
+    assert!(y);    
+    
+    let x = 5;
+    let y = match x {
+        1 ... 5 => true,
+        _ => false,
+    };
+    assert!(y);
+    
+    let x = 6;
+    let y = match x {
+        1 ... 5 => true,
+        _ => false,
+    };
+    assert!(!y);
+
+    // 文字に対しても使える
+    let x = 'x';
+    let y = match x {
+        'a' ... 'n' => "a-n",
+        'm' ... 'z' => "m-z",
+        _ => "other",
+    };
+    assert_eq!(y, "m-z");
+}
+
+// パターン: ガード
+#[test]
+fn pattern_guard() {
+
+    use Optional::*;
+
+    let x = Optional::Some(1);
+    let y = match x {
+        Some(n) if n > 1 => "A", // ガード
+        Some(..) => "B",
+        None => "C",
+    };
+    assert_eq!(y, "B");
+}
+
+// メソッド呼び出し構文
+#[test]
+fn method_call_syntax() {
+    
+    struct Person<'a> {
+        first_name: &'a str,
+        last_name: &'a str,
+    }
+
+    impl <'a> Person<'a> {
+        fn full_name(&self) -> String {
+            self.first_name.to_string() + " " + self.last_name
+        }
+    }
+
+    let p = Person {
+        first_name: "Yusuke",
+        last_name: "Hosonuma",
+    };
+
+    assert_eq!(p.full_name(), "Yusuke Hosonuma");
+}

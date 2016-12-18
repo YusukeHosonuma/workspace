@@ -508,3 +508,43 @@ fn method_call_syntax() {
 
     assert_eq!(p.full_name(), "Yusuke Hosonuma");
 }
+
+// Consリストのサンプル
+#[test]
+fn cons_list() {
+
+    enum Cons<T> {
+        List(T, Box<Cons<T>>), // Boxで包む必要がある
+        Nil,
+    }
+
+    impl<T> Cons<T> {
+
+        // 再帰的にcount()を呼ぶ
+        fn count(&self) -> i32 {
+            match *self {
+                Cons::Nil => 0,
+                Cons::List(_, ref tail) => 1 + tail.count(),
+            }
+        }
+
+        // 所有権をmoveする（奪う）
+        fn insert(self, x: T) -> Cons<T> {
+            Cons::List(x, Box::new(self))
+        }
+    }
+
+    // [] - empty list
+    let empty: Cons<i32> = Cons::Nil;
+    assert_eq!(empty.count(), 0);
+
+    // [1, 2, nil]
+    let list = Cons::List(1, Box::new(Cons::List(2, Box::new(Cons::Nil))));
+    assert_eq!(list.count(), 2);
+
+    // [0, 1, 2, nil]
+    let list2 = list.insert(0); // 所有権をmoveするので以降は`list`は使えなくなる
+    assert_eq!(list2.count(), 3);
+
+    // シャドウィングが有効なので、同じ名前`list`に束縛してもOK    
+}

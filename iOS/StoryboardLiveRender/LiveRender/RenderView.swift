@@ -17,27 +17,27 @@ class RenderView: UIView {
     
     override func draw(_ rect: CGRect) {
         
-        let context = UIGraphicsGetCurrentContext();
+        guard let context = UIGraphicsGetCurrentContext() else { return }
 
-        context?.setLineWidth(0.2)
+        context.setLineWidth(0.2)
         
-        context?.setStrokeColor(color.cgColor)
+        context.setStrokeColor(color.cgColor)
         
         // draw |
         for i in 0..<100 {
             let x: CGFloat = offset + CGFloat(i - 1) * gridSize
-            context?.move(to: CGPoint(x: x, y: 0))
-            context?.addLine(to: CGPoint(x: x, y: self.bounds.height))
+            context.move(to: CGPoint(x: x, y: 0))
+            context.addLine(to: CGPoint(x: x, y: self.bounds.height))
         }
         
         // draw -
         for i in 0..<300 {
             let y: CGFloat = offset + CGFloat(i - 1) * gridSize
-            context?.move(to: CGPoint(x: 0, y: y))
-            context?.addLine(to: CGPoint(x: self.bounds.width, y: y))
+            context.move(to: CGPoint(x: 0, y: y))
+            context.addLine(to: CGPoint(x: self.bounds.width, y: y))
         }
         
-        context?.closePath()
-        context?.strokePath()
+        context.closePath()
+        context.strokePath()
     }
 }

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oMt-a7-jMv">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="NFJ-Xv-CBM">
+            <objects>
+                <navigationController restorationIdentifier="NavigationController" id="oMt-a7-jMv" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ebh-mn-ODD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="w1b-Fe-shf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wTg-CC-9kg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1380" y="-51"/>
+        </scene>
+        <!--RestoreIDあり/各種メソッド実装あり-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController restorationIdentifier="ViewController" title="RestoreIDあり/各種メソッド実装あり" id="BYZ-38-t0r" customClass="ViewController" customModule="SaveRestore2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="ViewController" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xi3-dd-7jv">
+                                <rect key="frame" x="145" y="269" width="30" height="30"/>
+                                <state key="normal" title="First"/>
+                                <connections>
+                                    <segue destination="qTC-SF-gNJ" kind="show" id="orz-Uv-9Dy"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVv-cm-0qE">
+                                <rect key="frame" x="20" y="84" width="231.5" height="115"/>
+                                <string key="text">RestoreID：あり
+各種メソッド実装：あり
+
+※AppSwitcherからKillすると保存されない
+
+1. ホームボタンタップ
+2. Xcode上から終了
+3. シミュレータ or Xcode上から起動</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qVv-cm-0qE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="4ln-MH-4GY"/>
+                            <constraint firstItem="Xi3-dd-7jv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="5Lv-hN-pKB"/>
+                            <constraint firstItem="qVv-cm-0qE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="9bI-4H-ng9"/>
+                            <constraint firstItem="Xi3-dd-7jv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IxL-Ig-8kg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="PKL-Ai-y2R"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-697.5" y="-53.75"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bNE-mN-tm5">
+            <objects>
+                <viewController restorationIdentifier="ViewController2" id="qTC-SF-gNJ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2uI-Hu-rnt"/>
+                        <viewControllerLayoutGuide type="bottom" id="aH7-5R-CHU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gvi-zM-n9J">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gV4-gi-KxF">
+                                <rect key="frame" x="134" y="269" width="52" height="30"/>
+                                <state key="normal" title="Second"/>
+                                <connections>
+                                    <segue destination="0FF-dy-nhh" kind="show" id="B4g-8D-LYR"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvr-eR-7Hc">
+                                <rect key="frame" x="20" y="84" width="255" height="29"/>
+                                <string key="text">RestoreID：あり
+各種メソッド実装：なし（UIViewController）</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gV4-gi-KxF" firstAttribute="centerY" secondItem="gvi-zM-n9J" secondAttribute="centerY" id="Rt3-sV-gt8"/>
+                            <constraint firstItem="rvr-eR-7Hc" firstAttribute="top" secondItem="2uI-Hu-rnt" secondAttribute="bottom" constant="20" id="gpL-e2-4S1"/>
+                            <constraint firstItem="gV4-gi-KxF" firstAttribute="centerX" secondItem="gvi-zM-n9J" secondAttribute="centerX" id="guP-Hs-tZV"/>
+                            <constraint firstItem="rvr-eR-7Hc" firstAttribute="leading" secondItem="gvi-zM-n9J" secondAttribute="leading" constant="20" id="vYm-p4-vwY"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RKq-fd-w7M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="54.375" y="-53.75"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Jro-fe-C7c">
+            <objects>
+                <viewController id="0FF-dy-nhh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SoL-bJ-oiH"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fsc-Yd-KW5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bPM-Ac-ZNL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Third" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CNZ-k0-pYs">
+                                <rect key="frame" x="140" y="273.5" width="40" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4g7-yM-OjR">
+                                <rect key="frame" x="20" y="84" width="255" height="29"/>
+                                <string key="text">RestoreID：なし
+各種メソッド実装：なし（UIViewController）</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CNZ-k0-pYs" firstAttribute="centerY" secondItem="bPM-Ac-ZNL" secondAttribute="centerY" id="Zrz-gv-yf7"/>
+                            <constraint firstItem="4g7-yM-OjR" firstAttribute="top" secondItem="SoL-bJ-oiH" secondAttribute="bottom" constant="20" id="fgJ-eM-otc"/>
+                            <constraint firstItem="CNZ-k0-pYs" firstAttribute="centerX" secondItem="bPM-Ac-ZNL" secondAttribute="centerX" id="glH-Fp-iKi"/>
+                            <constraint firstItem="4g7-yM-OjR" firstAttribute="leading" secondItem="bPM-Ac-ZNL" secondAttribute="leading" constant="20" id="utq-wM-HzW"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cln-wr-3Us" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="876" y="-49"/>
+        </scene>
+    </scenes>
+</document>

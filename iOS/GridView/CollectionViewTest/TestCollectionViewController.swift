@@ -25,30 +25,31 @@ class TestCollectionViewController: UICollectionViewController {
     }
     
     func change() {
+        
+        guard let collectionView = self.collectionView else { return }
 
         self.modeIndex = (self.modeIndex + 1) % 2
 
-        switch (modeIndex) {
+        switch (self.modeIndex) {
         case 0:
             let layout = UICollectionViewFlowLayout();
             layout.itemSize = CGSize(width:150, height: 150)
-            self.collectionView?.setCollectionViewLayout(layout, animated: true)
+            collectionView.setCollectionViewLayout(layout, animated: true)
 
         case 1:
             let layout = UICollectionViewFlowLayout();
             layout.itemSize = CGSize(width:320, height: 80)
-            self.collectionView?.setCollectionViewLayout(layout, animated: true)
+            collectionView.setCollectionViewLayout(layout, animated: true)
             
         default:
             break
         }
         
-        self.collectionView?.reloadData()
+        collectionView.reloadData()
         
-        self.collectionView?.visibleCells.forEach { cell in
-            if let indexPath = self.collectionView?.indexPath(for: cell) {
-                self.updateCell(cell, indexPath:indexPath)
-            }
+        for cell in collectionView.visibleCells {
+            guard let indexPath = collectionView.indexPath(for: cell) else { continue }
+            self.updateCell(cell, indexPath:indexPath)
         }
     }
 

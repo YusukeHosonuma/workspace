@@ -9705,6 +9705,8 @@ var _user$project$Main$replace = F3(
 			},
 			text);
 	});
+var _user$project$Main$isCommentLine = _elm_lang$core$Regex$contains(
+	_elm_lang$core$Regex$regex('^\\s*//'));
 var _user$project$Main$remove = F2(
 	function (target, text) {
 		return A3(_user$project$Main$replace, target, '', text);
@@ -9905,7 +9907,14 @@ var _user$project$Main$convert = function (text) {
 			return _user$project$Main$expr(
 				_user$project$Main$removeComment(_p11));
 		},
-		_elm_lang$core$String$lines(text));
+		A2(
+			_elm_lang$core$List$filter,
+			function (line) {
+				return _elm_lang$core$Native_Utils.eq(
+					_user$project$Main$isCommentLine(line),
+					false);
+			},
+			_elm_lang$core$String$lines(text)));
 };
 var _user$project$Main$viewResult = function (model) {
 	var xs = A2(

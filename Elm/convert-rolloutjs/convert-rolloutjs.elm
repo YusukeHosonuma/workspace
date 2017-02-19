@@ -54,8 +54,9 @@ viewResult model =
 -- Rollout
 
 convert : String -> List String
-convert text =
-  String.lines text |> List.map (expr << removeComment)
+convert text = String.lines text
+  |> List.filter (\line -> isCommentLine line == False)
+  |> List.map (expr << removeComment)
 
 expr : String -> String
 expr text =
@@ -155,6 +156,9 @@ firstChar text =
 remove : String -> String -> String
 remove target text =
   replace target "" text
+
+isCommentLine : String -> Bool
+isCommentLine = Regex.contains (Regex.regex "^\\s*//")
 
 replace : String -> String -> String -> String
 replace from to text =

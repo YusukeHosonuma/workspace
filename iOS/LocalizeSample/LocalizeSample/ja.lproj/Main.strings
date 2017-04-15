@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Pgt-aj-7MP"; */
+"Pgt-aj-7MP.text" = "Label";
+
+/* Class = "UILabel"; text = "This is sample of Localize"; ObjectID = "WHu-kc-RAg"; */
+"WHu-kc-RAg.text" = "これはローカライズのサンプルです";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ZLg-nQ-90s"; */
+"ZLg-nQ-90s.text" = "Label";

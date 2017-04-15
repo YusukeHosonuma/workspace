@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  LocalizeSample
+
+  Created by Yusuke on 2017/04/15.
+
+*/
+"greeting" = "Hello";
+"greeting2" = "Hello, %@ version %f";

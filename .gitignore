@@ -2,3 +2,6 @@
 # ignore all
 **/debug/*
 **/release/*
+
+# Ruby
+.idea

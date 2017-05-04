@@ -1,20 +1,26 @@
 require 'spec_helper'
 require 'person'
 
-RSpec.describe Person do
+describe Person do
   let(:person) { Person.new }
   describe '#teen?' do
-    context '13 year old' do
-      before { person.age = 13 }
+    subject { person.teen? }
+    context 'when 13 year old' do
       it 'teen' do
-        expect(person).to be_teen
+        person.age = 13
+        is_expected.to be true
       end      
     end
-    context '20 year old' do
-      before { person.age = 20 }
+    context 'when 20 year old' do
       it 'not teen' do
-        expect(person).to_not be_teen   
+        person.age = 20
+        is_expected.to be false
       end
+    end
+  end
+  describe '#greet' do
+    it 'hello' do
+      expect(person.greet).to eq 'hello'
     end
   end
 end

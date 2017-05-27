@@ -1,0 +1,6 @@
+[package]
+name = "rustserver"
+version = "0.1.0"
+authors = ["Yusuke Hosonuma <tobi462@gmail.com>"]
+
+[dependencies]

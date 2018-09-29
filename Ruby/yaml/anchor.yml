@@ -1,0 +1,12 @@
+foo:
+  - name: &name hello # アンカー
+    config: &config
+      min: 0
+      max: 5
+    setting: &setting
+      min: 1
+      max: 3
+bar:
+  - name: *name # エイリアス
+    config2: *config
+    <<: *setting

@@ -1,0 +1,15 @@
+{
+  "name": "@tobi462/hello",
+  "bin": {
+    "hello": "./cli.js"
+  },
+  "version": "0.0.3",
+  "description": "sample",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yusuke.Hosonuma",
+  "license": "MIT",
+  "private": false
+}

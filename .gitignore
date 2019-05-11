@@ -11,3 +11,5 @@
 # Kotlin
 Kotlin/**/*.jar
 Kotlin/**/*.class
+
+node_modules

@@ -7,8 +7,8 @@ use std::fs::File;
 use std::net::{TcpListener, TcpStream};
 use std::io::prelude::*;
 use std::path::Path;
-use std::str::FromStr;
 use std::str;
+use std::thread;
 
 use rustserver::http::{Method, HttpVersion, Request, Server, HttpResult, ContentType};
 
@@ -24,7 +24,7 @@ fn main() {
 
     // Note: 面倒なので引数なしの場合は5000ポートで起動するように
     let port = if args.len() == 1 { "5000" } else { args[1].as_str() };
-    let address = format!("localhost:{}", port);
+    let address = format!("0.0.0.0:{}", port);
 
     let listener = match TcpListener::bind(address.as_str()) {
         Err(e) => {
@@ -39,7 +39,9 @@ fn main() {
         match stream {
             Err(e) => println!("Connection failed: {:?}", e),
             Ok(stream) => {
-                handle_client(stream);
+                thread::spawn(move || {
+                    handle_client(stream);
+                });
             },
         };
     }
